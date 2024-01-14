@@ -4,17 +4,21 @@ import {
   Image,
   StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import React from "react";
 import Logo from "../../../assets/logo.png";
 import Color from "../../Utils/Colors";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigation();
+  const handleLogin = () => {
+    navigation.navigate("Home");
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Welcome to our Bussiness App</Text>
@@ -31,7 +35,7 @@ export default function Login() {
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleLogin}>
           <Text style={styles.button}>Login</Text>
         </TouchableOpacity>
       </View>
@@ -50,9 +54,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   logo: {
-    width: 200,
-    height: 200,
-    marginTop: 200,
+    width: 100,
+    height: 100,
   },
   page: {
     flex: 1,
